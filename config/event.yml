@@ -9,46 +9,47 @@
 # ============================================================
 
 # --- Core Identity ---
-event_name: "Piece of Pie Hackathon"
+event_name: "Ada Lovelace Day Hackathon"
 season_name: "Season 1"
-community_name: "Gimbalabs"
+community_name: "Ada Lovelace Builders"
 tagline: "Build consistently. Share publicly. Ship real products."
 
 # --- Key Dates ---
 # Use ISO 8601 format: YYYY-MM-DD
-enrollment_start: "2026-04-12"
-enrollment_end: "2026-05-03"
-admin_week_1_start: "2026-04-13"
-build_end: "2026-07-19"
-final_presentation_start: "2026-07-13"
-final_presentation_end: "2026-07-19"
-payout_start: "2026-07-19"
-payout_end: "2026-07-26"
+enrollment_start: "2026-09-01"
+enrollment_end: "2026-09-10"
+admin_week_1_start: "2026-09-01"
+build_end: "2026-12-05"
+final_presentation_start: "2026-12-05"
+final_presentation_end: "2026-12-10"
+payout_start: "2026-12-25"
+payout_end: "2026-12-30"
+
 
 # Admin weeks are the canonical hackathon weeks shown on the dashboard.
-# Week 1 runs Monday 2026-04-13 through Sunday 2026-04-19.
+# Week 1 runs Monday 2026-09-01 through Sunday 2026-09-07.
 admin_duration_weeks: 14
 
 # Builders record 12 consecutive weekly updates, starting from their own
 # Builder Week 1. Store Builder Week 1 as the Sunday week-ending date.
 builder_update_duration_weeks: 12
-default_builder_week_1_end: "2026-05-03"
+default_builder_week_1_end: "2026-09-06"
 
 # --- Reward Pools ---
 # Use the name of your native token or currency (e.g. ADA, ETH, USD, USDC)
 reward_currency: "ADA"
 
 # Builder track — equal split among qualified builders
-builder_prize_pool: 10000
+builder_prize_pool: 5000
 
 # Optional sponsor track — equal split, for ecosystem-specific builds
 # Set to 0 or remove if not used
-sponsored_track_prize_pool: 20000
+sponsored_track_prize_pool: 1000
 sponsored_track_name: "Cardano Pie"
 sponsored_track_sponsor: "Cardano Foundation"
 
 # Real User track — equal split, requires at least one paying user
-real_user_prize_pool: 2000
+real_user_prize_pool: 0
 
 # Feedback track — proportional by credit, no builder project required
 feedback_prize_pool: 1000
@@ -59,12 +60,12 @@ admin_allocation: 3000
 # --- Administration ---
 admin_names:
   - "Newman"
-  - "GZero"
+  - "Q"
 
 # --- Community Links ---
 website_url: "https://your-community-website.com"
 registration_form_url: "https://forms.example.com/your-registration-form"
-discord_url: "https://discord.gg/your-server"
+discord_url: "https://discord.gg/Ws7qBtRGs"
 discord_feedback_channel_url: "https://discord.gg/your-feedback-channel"
 discord_discussion_channel_url: "https://discord.gg/your-discussion-channel"
 github_org_url: "https://github.com/your-org"
@@ -74,9 +75,12 @@ twitter_handle: "@yourcommunity"
 sponsor_names:
   - "Cardano Foundation"
   - "Gimbalabs"
+  - "FindingAda.com"
+  - "STEM college club"
+  - "GameChanger Finance"
 
 # Optional: bonus opportunity for a sponsored track (e.g., VC pitch)
-sponsored_track_bonus: "Qualified projects get an opportunity to pitch to {{vc_fund_name}}"
+sponsored_track_bonus: ""
 vc_fund_name: ""
 
 # --- Rules and Requirements ---
@@ -85,14 +89,15 @@ vc_fund_name: ""
 weekly_update_requirement: true
 weekly_update_platform: "X (Twitter)"  # Platform where updates are posted
 weekly_update_hashtags:
-  - "#pieceofpie"
+  - "#builderseason"
   - "#hackathon"
-weekly_update_mention: "@gimbalabs"
+  - "#AdaLovelaceDay2026"
+weekly_update_mention: "@HardForQKafe"  # Optional mention of your community account
    
 # Final presentation
 final_demo_required: true
 final_presentation_components:
-  - "live demo of the product"
+  - "live demo"
   - "official public repository link"
   - "links to all required weekly updates"
   - "deployed public product link"
