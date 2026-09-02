@@ -18,7 +18,7 @@ jobs:
   update-activity:
     runs-on: ubuntu-latest
     env:
-      ELEVENTY_SITE_URL: https://newman5.github.io/builder-season-playbook/
+      ELEVENTY_SITE_URL: https://the-hardforq.github.io/builder-season-playbook/
     defaults:
       run:
         working-directory: web

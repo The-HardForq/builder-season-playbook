@@ -1,322 +1,169 @@
 ---
-title: Piece of Pie Hackathon
-description: Official landing page for the current Builder Season.
+title: Ada Lovelace Builder Season
+description: A public invitation to make something for Ada Lovelace Day.
 layoutClass: event-landing
 ---
 
 {% extends "base.njk" %}
 
-{% set eventTitle = event.eventName or landing.hero.eventName %}
-{% set seasonTitle = event.seasonName or landing.hero.seasonName %}
-{% set communityName = event.communityName or landing.hero.communityName %}
-{% set registrationUrl = event.registrationFormUrl or "#register" %}
-{% set rewardCurrency = event.rewardCurrency or "ADA" %}
-{% set totalRewards = event.totalParticipantRewards %}
-{% set weeklyTags = event.weeklyUpdateHashtags | join(", ") %}
+{% set interestFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfBwd6Prlmjro5J0YBd7CcBn1_N9dsWrqngFGZM_THZ_U07jg/viewform?usp=dialog" %}
 
-{% block title %}{{ eventTitle }}{% endblock %}
+{% block title %}Ada Lovelace Builder Season{% endblock %}
 
 {% block content %}
-<div class="pop-page">
-  <section class="pop-hero" aria-labelledby="landing-title">
-    <div class="pop-panel pop-hero-copy">
-      <div class="pop-eyebrow">{{ landing.hero.eyebrow }}</div>
-      <h2 id="landing-title">{{ landing.hero.title }}</h2>
-      <p class="pop-lead">
-        {{ eventTitle }} is a {{ event.builderUpdateDurationWeeks or landing.hero.duration }}-week, participation-driven builder season.
-        {{ landing.hero.lead }}
+<div class="ada-page">
+  <section class="ada-hero" aria-labelledby="landing-title">
+    <div class="ada-hero-copy">
+      <p class="ada-kicker">Ada Lovelace Day Builder Season</p>
+      <h2 id="landing-title">Make something. Finish it. Put it into the world.</h2>
+      <p class="ada-lead">
+        A Builder Season is a longer, more welcoming evolution of the hackathon:
+        less weekend sprint, more sustained making, public progress, and finished work.
       </p>
-      <div class="pop-actions">
-        <a class="pop-btn pop-btn-primary" href="#rules">Read the rules first</a>
-        <a class="pop-btn pop-btn-secondary" href="#register">Go to registration</a>
-        <a class="pop-btn pop-btn-quiet" href="{{ '/dashboard/' | withBase }}">View dashboard</a>
-      </div>
-    </div>
-
-    <aside class="pop-panel pop-hero-side" aria-label="Season overview">
-      <div class="pop-sticker">overview</div>
-      <p>{{ landing.hero.sideCopy }}</p>
-      <div class="mini-grid">
-        {% for stat in landing.hero.stats %}
-          <div class="mini">
-            <strong>{{ stat.label }}</strong>
-            {% if stat.value == "event_duration" %}
-              {{ event.builderUpdateDurationWeeks or landing.hero.duration }} weeks
-            {% elif stat.value == "enrollment" %}
-              {{ event.enrollmentStart | readableDate }} to {{ event.enrollmentEnd | readableDate }}
-            {% elif stat.value == "weekly_update" %}
-              1 public update every week
-            {% else %}
-              {{ stat.value }}
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    </aside>
-  </section>
-
-  <section id="overview" class="pop-section pop-panel">
-    <div class="section-head">
-      <div>
-        <p class="pop-kicker">Overview</p>
-        <h2 class="section-title">{{ landing.overview.title }}</h2>
-        <p class="section-sub">{{ landing.overview.copy }}</p>
-      </div>
-      <div class="priority-pill">{{ seasonTitle }} by {{ communityName }}</div>
-    </div>
-    <div class="overview-grid">
-      {% for item in landing.overview.cards %}
-        <article class="rule">
-          <div class="rule-num">{{ loop.index }}</div>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.copy }}</p>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-
-  <section id="how-it-works" class="pop-section pop-panel workflow-section">
-    <div class="section-head">
-      <div>
-        <p class="pop-kicker">How it works</p>
-        <h2 class="section-title">{{ landing.howItWorks.title }}</h2>
-        <p class="section-sub">{{ landing.howItWorks.copy }}</p>
-      </div>
-    </div>
-    <div class="kanban-board" aria-label="Builder season workflow">
-      {% for step in landing.howItWorks.steps %}
-        <article class="kanban-card">
-          <span>0{{ loop.index }}</span>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.copy }}</p>
-        </article>
-      {% endfor %}
-    </div>
-  </section>
-
-  <section id="rewards" class="pop-section pop-panel pie-share-section">
-    <div class="section-head">
-      <div>
-        <p class="pop-kicker">Rewards</p>
-        <h2 class="section-title">{{ landing.rewards.title }}</h2>
-        <p class="section-sub">{{ landing.rewards.copy }}</p>
-      </div>
-      <div class="priority-pill availability-pill">
-        <strong>{% if totalRewards %}{{ totalRewards | numberWithCommas }} {{ rewardCurrency }}{% else %}Rewards{% endif %} available</strong>
-        <span>{{ landing.rewards.pill }}</span>
-      </div>
-    </div>
-
-    <div class="pie-share-overview">
-      <aside class="pie-pool-card" aria-label="Reward pools">
-        <div class="pie-chart" aria-hidden="true">
-          <div class="pie-hole">
-            <strong>{% if totalRewards %}{{ totalRewards | numberWithCommas }}{% else %}Pool{% endif %}</strong>
-            <span>{{ rewardCurrency }}</span>
-          </div>
-        </div>
-        <div class="pie-legend">
-          {% for reward in landing.rewards.cards %}
-            <div class="pie-legend-item">
-              <span class="pie-dot pie-dot--{{ reward.key }}"></span>{{ reward.title }} - {{ event[reward.amountKey] | numberWithCommas }} {{ rewardCurrency }}
-            </div>
-          {% endfor %}
-        </div>
-      </aside>
-
-      <div class="pie-share-grid">
-        {% for reward in landing.rewards.cards %}
-          <article class="pie-share-card">
-            <h3>{{ reward.title }} - {{ event[reward.amountKey] | numberWithCommas }} {{ rewardCurrency }}</h3>
-            <p>{{ reward.copy }}</p>
-          </article>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  <section id="sponsors" class="pop-section pop-panel sponsor-panel" aria-labelledby="sponsor-title">
-    <div class="sponsor-layout">
-      <div class="sponsor-logo-card" aria-hidden="true">
-        <span>{{ landing.sponsors.mark }}</span>
-      </div>
-      <div class="sponsor-content">
-        <span class="sponsor-kicker">Sponsors</span>
-        <h2 id="sponsor-title" class="sponsor-title">{{ landing.sponsors.title }}</h2>
-        <p class="sponsor-copy">
-          {% if event.sponsorNames.length %}
-            {{ event.sponsorNames | join(", ") }} support this season's reward pools and builder-facing incentives.
-          {% else %}
-            {{ landing.sponsors.copy }}
-          {% endif %}
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="rules" class="pop-section pop-panel">
-    <div class="section-head">
-      <div>
-        <p class="pop-kicker">Rules</p>
-        <h2 class="section-title">{{ landing.rules.title }}</h2>
-        <p class="section-sub">{{ landing.rules.copy }}</p>
-      </div>
-      <div class="priority-pill">Top priority</div>
-    </div>
-
-    <div class="rules-intro">
-      <div class="callout">
-        <strong>Key principle</strong>
-        <p>Qualify through consistent, verifiable participation, not competition.</p>
-      </div>
-      <div class="warning">
-        <strong>Automatic disqualification triggers</strong>
-        <ul class="checklist checklist--warning">
-          <li>Missing a required weekly update.</li>
-          <li>Joining more than one project.</li>
-          <li>Failing to provide verifiable public evidence.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="rule-group">
-      <h3 class="rule-group-title">The Builder Track</h3>
-      <div class="rules-grid">
-        {% for rule in landing.rules.builder %}
-          <article class="rule">
-            <div class="rule-num">{{ loop.index }}</div>
-            <h3>{{ rule.title }}</h3>
-            <p>{{ rule.copy }}</p>
-          </article>
-        {% endfor %}
-        <div class="callout tweet-card">
-          <strong>Sample Weekly Progress Update</strong>
-          <p class="tweet-help">Copy this structure, then replace the body with real progress for the week.</p>
-          <div class="mono-box">Week X update - {{ eventTitle }}<br>Built: ...<br>Learned: ...<br>Next: ...<br>{% if weeklyTags %}{{ weeklyTags }} {% endif %}{{ event.weeklyUpdateMention }}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="rule-group">
-      <h3 class="rule-group-title">{{ event.sponsoredTrackName or "Sponsored Track" }}</h3>
-      <div class="rules-grid rules-grid--featured">
-        {% for rule in landing.rules.sponsorTrack %}
-          <article class="rule rule--featured">
-            <div class="rule-num">{{ loop.index }}</div>
-            <h3>{{ rule.title }}</h3>
-            <p>{{ rule.copy }}</p>
-          </article>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="rule-group">
-      <h3 class="rule-group-title">Real User Track</h3>
-      <div class="rules-grid">
-        {% for rule in landing.rules.realUser %}
-          <article class="rule">
-            <div class="rule-num">{{ loop.index }}</div>
-            <h3>{{ rule.title }}</h3>
-            <p>{{ rule.copy }}</p>
-          </article>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="rule-group">
-      <h3 class="rule-group-title">Feedback Track</h3>
-      <div class="rules-grid">
-        {% for rule in landing.rules.feedback %}
-          <article class="rule">
-            <div class="rule-num">{{ loop.index }}</div>
-            <h3>{{ rule.title }}</h3>
-            <p>{{ rule.copy }}</p>
-          </article>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  <section class="pop-section split">
-    <div id="timeline" class="pop-panel">
-      <p class="pop-kicker">Timeline</p>
-      <h2 class="section-title">{{ landing.timeline.title }}</h2>
-      <p class="section-sub">{{ landing.timeline.copy }}</p>
-      <div class="timeline">
-        {% for item in landing.timeline.items %}
-          <div class="timeline-item">
-            <strong>{{ item.title }}</strong>
-            {% if item.dateKey == "enrollment" %}
-              {{ event.enrollmentStart | readableDate }} to {{ event.enrollmentEnd | readableDate }}. {{ item.copy }}
-            {% elif item.dateKey == "build" %}
-              Ends {{ event.buildEnd | readableDate }}. {{ item.copy }}
-            {% elif item.dateKey == "final" %}
-              {{ event.finalPresentationStart | readableDate }} to {{ event.finalPresentationEnd | readableDate }}. {{ item.copy }}
-            {% elif item.dateKey == "payout" %}
-              {{ event.payoutStart | readableDate }} to {{ event.payoutEnd | readableDate }}. {{ item.copy }}
-            {% else %}
-              {{ item.copy }}
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div id="register" class="pop-panel">
-      <p class="pop-kicker">Registration</p>
-      <h2 class="section-title">{{ landing.registration.title }}</h2>
-      <p class="section-sub">{{ landing.registration.copy }}</p>
-      <div class="timeline">
-        {% for step in landing.registration.steps %}
-          <div class="timeline-item">
-            <strong>{{ step.title }}</strong>
-            {{ step.copy }}
-          </div>
-        {% endfor %}
-      </div>
-      <div class="footer-actions">
-        <a class="pop-btn pop-btn-primary" href="{{ registrationUrl }}">Register</a>
-        <a class="pop-btn pop-btn-secondary" href="https://github.com">Create empty public repo</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="pop-section pop-panel faq-panel">
-    <div class="section-head">
-      <div>
-        <p class="pop-kicker">FAQ</p>
-        <h2 class="section-title">{{ landing.faq.title }}</h2>
-      </div>
-    </div>
-    <div class="faq-list">
-      {% for item in landing.faq.items %}
-        <details>
-          <summary>{{ item.question }}</summary>
-          <p>{{ item.answer }}</p>
-        </details>
-      {% endfor %}
-    </div>
-  </section>
-
-  <section id="community" class="source-truth">
-    <div class="source-truth-panel">
-      <h2 class="source-truth-title">{{ landing.community.title }}</h2>
-      <p class="source-truth-sub">{{ landing.community.copy }}</p>
-      <div class="source-truth-links">
-        <a class="source-truth-link" href="{{ event.githubOrgUrl or '#' }}">
-          <p class="source-truth-link-text">Open the official repository or community GitHub.</p>
-          <span class="source-truth-link-icon">git</span>
+      <div class="ada-actions">
+        <a class="ada-btn ada-btn-primary" href="{{ interestFormUrl }}" rel="external noopener">
+          Be notified when the Ada Lovelace Builder Season opens
         </a>
-        <a class="source-truth-link" href="{{ event.discordUrl or '#' }}">
-          <p class="source-truth-link-text">Join the community Discord for questions and feedback sessions.</p>
-          <span class="source-truth-link-icon">chat</span>
-        </a>
-        <a class="source-truth-link" href="{{ '/use-this-model/' | withBase }}">
-          <p class="source-truth-link-text">Use this model for another builder season.</p>
-          <span class="source-truth-link-icon">fork</span>
-        </a>
+        <a class="ada-btn ada-btn-secondary" href="#how-it-works">See how it works</a>
       </div>
     </div>
+
+    <div class="ada-machine" aria-hidden="true">
+      <div class="ada-sun"></div>
+      <div class="ada-card-stack">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="ada-orbit">
+        <span>01</span>
+        <span>10</span>
+        <span>11</span>
+      </div>
+      <p>Ada + imagination + machines</p>
+    </div>
+  </section>
+
+  <section id="why" class="ada-band ada-band-light">
+    <div class="ada-section-head">
+      <p class="ada-kicker">Why Builder Season?</p>
+      <h2>Hackathons create sparks. A season gives the spark somewhere to go.</h2>
+    </div>
+    <div class="ada-two-col">
+      <p>
+        Short competitive sprints are useful, but not every builder does their best work
+        under a countdown clock. Builder Season makes room for learning, revision,
+        collaboration, setbacks, persistence, and the very practical work of finishing.
+      </p>
+      <p>
+        Building is broad here. Software counts. So do art, writing, research,
+        educational material, events, media, performances, open-source contributions,
+        experiments, and things nobody has a category for yet.
+      </p>
+    </div>
+  </section>
+
+  <section id="ada" class="ada-band ada-band-red">
+    <div class="ada-section-head">
+      <p class="ada-kicker">Why Ada Lovelace?</p>
+      <h2>Poetical science is the theme.</h2>
+    </div>
+    <div class="ada-two-col">
+      <p>
+        Ada Lovelace saw computation as more than arithmetic. Her work joined
+        mathematical precision with imagination, language, music, and the question of
+        what machines might someday help people create.
+      </p>
+      <p>
+        This season celebrates that combination, and the women in STEM and technology
+        whose contributions deserve to be recognized, encouraged, and made visible now.
+        For Cardano builders, ADA is more than a ticker. It is a name worth knowing.
+      </p>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="ada-band">
+    <div class="ada-section-head">
+      <p class="ada-kicker">How It Works</p>
+      <h2>Commit -> Build -> Share -> Finish -> Celebrate</h2>
+    </div>
+    <ol class="ada-loop" aria-label="Builder Season loop">
+      <li>
+        <strong>Commit</strong>
+        Choose something small enough to finish and meaningful enough to care about.
+      </li>
+      <li>
+        <strong>Build</strong>
+        Work over time. Learn, test, revise, ask for help, and keep going.
+      </li>
+      <li>
+        <strong>Share</strong>
+        Make progress visible. Notes, demos, sketches, failures, and discoveries all count.
+      </li>
+      <li>
+        <strong>Finish</strong>
+        Put a real thing into the world, even if it is modest, rough, or version one.
+      </li>
+      <li>
+        <strong>Celebrate</strong>
+        Gather around the finished work and the people who made it.
+      </li>
+    </ol>
+  </section>
+
+  <section id="build" class="ada-band ada-band-yellow">
+    <div class="ada-section-head">
+      <p class="ada-kicker">What Could You Make?</p>
+      <h2>An invitation, not a narrow track list.</h2>
+    </div>
+    <div class="ada-tag-cloud" aria-label="Example project directions">
+      <span>Software</span>
+      <span>Art</span>
+      <span>Writing</span>
+      <span>Research</span>
+      <span>Education</span>
+      <span>Events</span>
+      <span>Media</span>
+      <span>Open source</span>
+      <span>Storytelling</span>
+      <span>Experiments</span>
+    </div>
+    <p class="ada-wide-copy">
+      Explore Ada's ideas. Celebrate a woman working in technology. Highlight women
+      contributing to Cardano or blockchain. Combine code with music, mathematics with
+      storytelling, engineering with art, or teaching with public imagination.
+    </p>
+  </section>
+
+  <section id="share" class="ada-band ada-band-light">
+    <div class="ada-section-head">
+      <p class="ada-kicker">Build In Public</p>
+      <h2>The process is part of the season.</h2>
+    </div>
+    <div class="ada-two-col">
+      <p>
+        Participants share progress along the way. Not just the polished artifact:
+        the sketches, questions, tradeoffs, strange detours, hard lessons, and moments
+        when the idea finally starts to work.
+      </p>
+      <p>
+        You choose the scope. The season asks you to finish it. Small finished projects
+        are welcome because completion is the point, not maximum complexity.
+      </p>
+    </div>
+  </section>
+
+  <section id="interest" class="ada-cta" aria-labelledby="interest-title">
+    <div>
+      <p class="ada-kicker">Coming Next</p>
+      <h2 id="interest-title">Be notified when the Ada Lovelace Builder Season opens.</h2>
+      <p>
+        The season is still being organized. Sign up to be notified when registration form opens.
+      </p>
+    </div>
+    <a class="ada-btn ada-btn-primary" href="{{ interestFormUrl }}" rel="external noopener">
+      Open interest form
+    </a>
   </section>
 </div>
 {% endblock %}

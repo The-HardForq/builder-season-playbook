@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Builder Season Playbook{% endblock %}</title>
+  <title>{% block title %}Ada Lovelace Day Builder Season Playbook{% endblock %}</title>
 
   <meta property="og:image" content="{{ (og_image or '/images/og/11ty-blog-OG-default.jpg') | withBase }}">
-  <meta property="og:title" content="{{ title or 'Builder Season Playbook' }}">
+  <meta property="og:title" content="{{ title or 'Ada Lovelace Day Builder Season Playbook' }}">
   <meta property="og:description" content="{{ description or 'Open web dashboard and progress log for Builder Season.' }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ page.url | withBase }}">
@@ -1446,6 +1446,423 @@
       text-transform: uppercase;
     }
 
+    body.event-landing {
+      --ada-ink: #050505;
+      --ada-paper: #fff8e8;
+      --ada-paper-soft: #ffecc1;
+      --ada-magenta: #e9005a;
+      --ada-red: #d61f26;
+      --ada-orange: #f36b21;
+      --ada-yellow: #ffd23f;
+      --ada-muted: #4a332c;
+      --pop-bg: var(--ada-paper);
+      --pop-text: var(--ada-ink);
+      --pop-panel: var(--ada-paper);
+      --pop-ink: var(--ada-ink);
+      --pop-muted: var(--ada-muted);
+      --pop-border: var(--ada-ink);
+      --pop-shadow: var(--ada-ink);
+      color: var(--ada-ink);
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.08) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--ada-paper) 0 38%, var(--ada-yellow) 38% 56%, var(--ada-magenta) 56% 100%);
+      background-size: 36px 36px, 36px 36px, auto;
+    }
+
+    body.event-landing .shell {
+      max-width: 1180px;
+      padding: 18px 24px 34px;
+    }
+
+    body.event-landing header {
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 4px solid var(--ada-ink);
+    }
+
+    body.event-landing header h1 {
+      font-size: 1.25rem;
+      font-weight: 950;
+      color: var(--ada-ink);
+    }
+
+    body.event-landing header h1 a::before {
+      content: "AL";
+      width: 44px;
+      height: 44px;
+      border: 4px solid var(--ada-ink);
+      border-radius: 0;
+      background: var(--ada-yellow);
+      box-shadow: 5px 5px 0 var(--ada-ink);
+      color: var(--ada-ink);
+    }
+
+    body.event-landing header p {
+      max-width: 48rem;
+      color: var(--ada-muted);
+      font-weight: 800;
+    }
+
+    body.event-landing nav a {
+      border: 3px solid var(--ada-ink);
+      border-radius: 0;
+      background: var(--ada-paper);
+      box-shadow: 4px 4px 0 var(--ada-ink);
+      color: var(--ada-ink);
+      text-transform: uppercase;
+    }
+
+    body.event-landing nav a:hover,
+    body.event-landing nav a:focus-visible {
+      box-shadow: 6px 6px 0 var(--ada-ink);
+      color: var(--ada-ink);
+    }
+
+    body.event-landing footer {
+      border-top: 4px solid var(--ada-ink);
+      color: var(--ada-muted);
+      font-weight: 800;
+    }
+
+    body.event-landing footer a {
+      color: var(--ada-ink);
+      font-weight: 900;
+    }
+
+    .ada-page {
+      display: grid;
+      gap: 24px;
+    }
+
+    .ada-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      min-height: 620px;
+      border: 5px solid var(--ada-ink);
+      background: var(--ada-magenta);
+      box-shadow: 10px 10px 0 var(--ada-ink);
+    }
+
+    .ada-hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px;
+      background:
+        repeating-linear-gradient(-8deg, transparent 0 18px, rgba(5, 5, 5, 0.08) 18px 20px),
+        var(--ada-paper);
+    }
+
+    .ada-kicker {
+      display: inline-flex;
+      width: fit-content;
+      margin: 0 0 18px;
+      padding: 7px 12px;
+      border: 3px solid var(--ada-ink);
+      background: var(--ada-yellow);
+      color: var(--ada-ink);
+      box-shadow: 4px 4px 0 var(--ada-ink);
+      font-size: 0.82rem;
+      font-weight: 950;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .ada-hero h2,
+    .ada-band h2,
+    .ada-cta h2 {
+      margin: 0;
+      color: var(--ada-ink);
+      font-size: 4.8rem;
+      font-weight: 950;
+      letter-spacing: 0;
+      line-height: 0.95;
+      max-width: 12ch;
+    }
+
+    .ada-band h2,
+    .ada-cta h2 {
+      font-size: 3.25rem;
+      max-width: 15ch;
+      line-height: 1;
+    }
+
+    .ada-lead,
+    .ada-band p,
+    .ada-cta p,
+    .ada-loop li {
+      color: var(--ada-muted);
+      font-size: 1.08rem;
+      font-weight: 760;
+    }
+
+    .ada-lead {
+      max-width: 44rem;
+      margin: 22px 0 0;
+      font-size: 1.3rem;
+    }
+
+    .ada-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .ada-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border: 4px solid var(--ada-ink);
+      border-radius: 0;
+      box-shadow: 5px 5px 0 var(--ada-ink);
+      color: var(--ada-ink);
+      font-weight: 950;
+      line-height: 1.15;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .ada-btn:hover,
+    .ada-btn:focus-visible {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--ada-ink);
+      color: var(--ada-ink);
+      outline: none;
+    }
+
+    .ada-btn-primary {
+      background: var(--ada-orange);
+    }
+
+    .ada-btn-secondary {
+      background: var(--ada-paper);
+    }
+
+    .ada-machine {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 520px;
+      overflow: hidden;
+      border-left: 5px solid var(--ada-ink);
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.16) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(5, 5, 5, 0.16) 1px, transparent 1px),
+        var(--ada-red);
+      background-size: 26px 26px;
+    }
+
+    .ada-machine::before,
+    .ada-machine::after {
+      content: "n -> n + imagination";
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      padding: 10px 12px;
+      border: 3px solid var(--ada-ink);
+      background: var(--ada-paper);
+      box-shadow: 4px 4px 0 var(--ada-ink);
+      color: var(--ada-ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.95rem;
+      font-weight: 900;
+    }
+
+    .ada-machine::before {
+      top: 26px;
+      transform: rotate(-2deg);
+    }
+
+    .ada-machine::after {
+      content: "poetical science / public work";
+      bottom: 26px;
+      transform: rotate(2deg);
+    }
+
+    .ada-sun {
+      width: 250px;
+      aspect-ratio: 1;
+      border: 5px solid var(--ada-ink);
+      border-radius: 50%;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 13px, rgba(5, 5, 5, 0.18) 13px 16px),
+        var(--ada-yellow);
+      box-shadow: 9px 9px 0 var(--ada-ink);
+    }
+
+    .ada-card-stack {
+      position: absolute;
+      display: grid;
+      gap: 12px;
+      left: 42px;
+      top: 132px;
+      transform: rotate(-7deg);
+    }
+
+    .ada-card-stack span {
+      display: block;
+      width: 170px;
+      height: 46px;
+      border: 4px solid var(--ada-ink);
+      background:
+        radial-gradient(circle, var(--ada-ink) 0 4px, transparent 5px) 14px 10px / 24px 14px,
+        var(--ada-paper);
+      box-shadow: 5px 5px 0 var(--ada-ink);
+    }
+
+    .ada-orbit {
+      position: absolute;
+      right: 34px;
+      top: 145px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .ada-orbit span {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border: 4px solid var(--ada-ink);
+      border-radius: 50%;
+      background: var(--ada-paper);
+      box-shadow: 4px 4px 0 var(--ada-ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 950;
+    }
+
+    .ada-machine p {
+      position: absolute;
+      left: 34px;
+      bottom: 92px;
+      max-width: 15rem;
+      margin: 0;
+      color: var(--ada-paper);
+      font-size: 2rem;
+      font-weight: 950;
+      line-height: 1;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 0 var(--ada-ink);
+    }
+
+    .ada-band,
+    .ada-cta {
+      border: 5px solid var(--ada-ink);
+      box-shadow: 8px 8px 0 var(--ada-ink);
+      background: var(--ada-paper);
+      padding: 42px;
+    }
+
+    .ada-band-red {
+      background: var(--ada-magenta);
+    }
+
+    .ada-band-red .ada-kicker,
+    .ada-band-yellow .ada-kicker {
+      background: var(--ada-paper);
+    }
+
+    .ada-band-red h2,
+    .ada-band-red p,
+    .ada-band-red .ada-section-head .ada-kicker {
+      color: var(--ada-ink);
+    }
+
+    .ada-band-light {
+      background:
+        repeating-linear-gradient(0deg, transparent 0 30px, rgba(5, 5, 5, 0.08) 30px 33px),
+        var(--ada-paper-soft);
+    }
+
+    .ada-band-yellow {
+      background: var(--ada-yellow);
+    }
+
+    .ada-section-head {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 26px;
+    }
+
+    .ada-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      max-width: 78rem;
+    }
+
+    .ada-two-col p,
+    .ada-wide-copy,
+    .ada-cta p {
+      margin: 0;
+      max-width: 64ch;
+    }
+
+    .ada-loop {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ada-loop li {
+      min-height: 230px;
+      padding: 18px;
+      border: 4px solid var(--ada-ink);
+      background: var(--ada-paper);
+      box-shadow: 5px 5px 0 var(--ada-ink);
+    }
+
+    .ada-loop strong {
+      display: block;
+      margin-bottom: 38px;
+      color: var(--ada-ink);
+      font-size: 1.3rem;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .ada-tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .ada-tag-cloud span {
+      padding: 10px 14px;
+      border: 4px solid var(--ada-ink);
+      background: var(--ada-paper);
+      box-shadow: 4px 4px 0 var(--ada-ink);
+      color: var(--ada-ink);
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .ada-wide-copy {
+      color: var(--ada-muted);
+      font-size: 1.18rem;
+      font-weight: 780;
+    }
+
+    .ada-cta {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.12) 1px, transparent 1px),
+        var(--ada-orange);
+      background-size: 22px 22px;
+    }
+
     @media (max-width: 760px) {
       .shell {
         padding: 18px;
@@ -1588,25 +2005,109 @@
         flex-direction: column;
         align-items: stretch;
       }
+
+      .ada-hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .ada-hero-copy,
+      .ada-band,
+      .ada-cta {
+        padding: 24px;
+      }
+
+      .ada-hero h2 {
+        font-size: 3rem;
+      }
+
+      .ada-band h2,
+      .ada-cta h2 {
+        font-size: 2.25rem;
+      }
+
+      .ada-lead,
+      .ada-band p,
+      .ada-cta p,
+      .ada-loop li {
+        font-size: 1rem;
+      }
+
+      .ada-actions,
+      .ada-cta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .ada-btn {
+        width: 100%;
+      }
+
+      .ada-machine {
+        min-height: 390px;
+        border-left: 0;
+        border-top: 5px solid var(--ada-ink);
+      }
+
+      .ada-sun {
+        width: 190px;
+      }
+
+      .ada-card-stack {
+        left: 18px;
+        top: 112px;
+      }
+
+      .ada-card-stack span {
+        width: 128px;
+      }
+
+      .ada-orbit {
+        right: 18px;
+        top: 112px;
+      }
+
+      .ada-machine p {
+        left: 24px;
+        bottom: 82px;
+        font-size: 1.45rem;
+      }
+
+      .ada-two-col,
+      .ada-loop {
+        grid-template-columns: 1fr;
+      }
+
+      .ada-loop li {
+        min-height: auto;
+      }
+
+      .ada-loop strong {
+        margin-bottom: 12px;
+      }
     }
   </style>
 </head>
 <body class="{{ layoutClass or '' }}">
   <div class="shell">
     <header>
-      <h1><a href="{{ '/' | withBase }}" style="color: inherit; text-decoration: none;">Builder Season Playbook</a></h1>
-      <p>A practical framework for long-form hackathons with weekly accountability, visible progress, and lightweight operations.</p>
+      <h1><a href="{{ '/' | withBase }}" style="color: inherit; text-decoration: none;">Ada Lovelace Playbook</a></h1>
+      <p>Make something for Ada Lovelace Day. Build in public, share your progress, and put a finished thing into the world.</p>
       <nav>
-        <a href="{{ '/' | withBase }}">Home</a>
-        <a href="{{ '/#rules' | withBase }}">Rules</a>
-        <a href="{{ '/#timeline' | withBase }}">Timeline</a>
-        <a href="{{ '/#register' | withBase }}">Register</a>
-        <a href="{{ '/dashboard/' | withBase }}">Current Season Dashboard</a>
-        <a href="{{ '/use-this-model/' | withBase }}">Use This Model</a>
-        {# <a href="{{ '/progress-log/' | withBase }}">Progress Log</a>
-        <a href="{{ '/posts/' | withBase }}">Archive</a>
-        <a href="{{ '/data/' | withBase }}">Data</a>
-        <a href="{{ '/feed/feed.xml' | withBase }}">RSS Feed</a> #}
+        {% if layoutClass == "event-landing" %}
+          <a href="{{ '/' | withBase }}">Home</a>
+          <a href="{{ '/#ada' | withBase }}">Why Ada</a>
+          <a href="{{ '/#how-it-works' | withBase }}">How It Works</a>
+          <a href="{{ '/#interest' | withBase }}">Notify Me</a>
+        {% else %}
+          <a href="{{ '/' | withBase }}">Home</a>
+          <a href="{{ '/dashboard/' | withBase }}">Current Season Dashboard</a>
+          <a href="{{ '/use-this-model/' | withBase }}">Use This Model</a>
+          {# <a href="{{ '/progress-log/' | withBase }}">Progress Log</a>
+          <a href="{{ '/posts/' | withBase }}">Archive</a>
+          <a href="{{ '/data/' | withBase }}">Data</a>
+          <a href="{{ '/feed/feed.xml' | withBase }}">RSS Feed</a> #}
+        {% endif %}
       </nav>
     </header>
 
